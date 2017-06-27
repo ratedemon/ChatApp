@@ -1,0 +1,21 @@
+:host{
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  width: 100%;
+}
+.myself{
+  align-self: flex-end;
+  align-items: flex-end;
+}
+.item__block{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+}
+.block__img{
+  width: 100px;
+  height: 100px;
+}
