@@ -1,16 +1,11 @@
-<div class="row columns">
+<div class="row main">
   <button (click)="login()" *ngIf="!user?.uid">Anonymous Login</button>
   <button (click)="logout()" *ngIf="user?.uid">Logout</button>
 
-  <input type="text" class="message" placeholder="What is it that you do?" (keyup.enter)="Send($event.target.value)" [(ngModel)]="msgVal" />
-  <!--<div id="details-container" *ngIf="user?.uid">
-      <p *ngFor="let item of items" ><img src="http://www.topglobus.ru/forum/images/avatars/gallery/filmy/Batman.jpg">{{item.message}}
-  </div>-->
   <ul class="list__messages">
     <li class="list__item" *ngFor="let item of items">
-      <!--{{item.name}} : {{item.message}}-->
       <list-item [item]="item" [user]="user.displayName"></list-item>
     </li>
   </ul>
+  <input type="text" class="message" placeholder="What is it that you do?" (keyup.enter)="Send($event.target.value)" [(ngModel)]="msgVal" />  
 </div>
-<!--*ngIf="(user | async)?.uid" *ngIf="(user | async)?.uid"-->

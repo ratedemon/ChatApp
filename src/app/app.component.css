@@ -1,8 +1,19 @@
+.main{
+  /*max-height: 100vh;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
 .list__messages{
   display: flex;
   flex-direction: column;
   align-items: stretch;
   width: 100%;
+  flex:1;
+  overflow-y: scroll;
+  margin: 0;
+  padding: 0;
 }
 .list__item{
   list-style: none;
