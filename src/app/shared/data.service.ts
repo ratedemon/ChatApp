@@ -32,9 +32,11 @@ export class DataService {
   // initUser(){
 
   // }
-  loginFacebook(){
+  loginGoogle(){
     return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider);
-    // return this.afAuth.auth.
+  }
+  loginFacebook(){
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider);
   }
   logout(){
     return this.afAuth.auth.signOut()

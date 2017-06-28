@@ -1,0 +1,15 @@
+<div class="container chat__box">
+  <ul class="col s12 chat__list">
+    <li class="list__item" *ngFor="let item of items">
+      <list-item [item]="item" [user]="user.displayName"></list-item>
+    </li>
+  </ul>
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea id="textarea1" class="materialize-textarea message" (keyup.enter)="Send($event.target.value)" [(ngModel)]="msgVal" [ngModelOptions]="{standalone: true}"></textarea>
+        <label for="textarea1">Your message</label>
+      </div>
+    </div>
+  </form>
+</div>

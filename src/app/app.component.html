@@ -1,4 +1,4 @@
-<div class="row main">
+<!--<div class="row main">
   <button (click)="login()" *ngIf="!user?.uid">Anonymous Login</button>
   <button (click)="logout()" *ngIf="user?.uid">Logout</button>
 
@@ -8,4 +8,27 @@
     </li>
   </ul>
   <input type="text" class="message" placeholder="What is it that you do?" (keyup.enter)="Send($event.target.value)" [(ngModel)]="msgVal" />  
-</div>
+</div>-->
+<header class="header row card-panel deep-purple darken-1">
+  <div class="container header__box">
+    <div class="col s4 offset-s4 header__title">
+      <h1 class="header__title_name white-text"><a routerLink="/">{{title}}</a></h1>
+    </div>
+    <div class="col s4 header__btns">
+      <i class="material-icons" *ngIf="!user?.uid">person_outline</i>
+      <i class="material-icons" *ngIf="user?.uid" (click)="logout()" >person</i>
+    </div>
+  </div>
+</header>
+<main class="main row">
+  <!--<login-page [items]="items" [user]="user"></login-page>-->
+  <router-outlet></router-outlet>
+</main>
+<footer class="page-footer footer">
+    <div class="footer-copyright">
+      <div class="container">
+      © {{year}} Copyright Text
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      </div>
+    </div>
+  </footer>

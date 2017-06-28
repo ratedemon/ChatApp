@@ -1,0 +1,16 @@
+.main__title{
+  text-align: center;
+}
+.input-field{
+  margin: 0;
+}
+.main__btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main__login{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
