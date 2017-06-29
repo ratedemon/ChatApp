@@ -8,6 +8,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+.register__btn{
+  margin-top: 1em;
 }
 .main__login{
   display: flex;

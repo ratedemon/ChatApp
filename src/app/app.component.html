@@ -1,11 +1,11 @@
-<header class="header row card-panel deep-purple darken-1">
+<header class="header row card-panel light-blue darken-3 waves-effect waves-light">
   <div class="container header__box">
     <div class="col s4 offset-s4 header__title">
       <h1 class="header__title_name white-text"><a routerLink="/">{{title}}</a></h1>
     </div>
     <div class="col s4 header__btns">
       <i class="material-icons" *ngIf="!user?.uid">person_outline</i>
-      <i class="material-icons" *ngIf="user?.uid" (click)="logout()" >person</i>
+      <i class="material-icons tooltipped" *ngIf="user?.uid" data-position="bottom" data-delay="50" data-tooltip="Log out" (click)="logout()" >person</i>
     </div>
   </div>
 </header>

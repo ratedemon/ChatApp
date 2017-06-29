@@ -6,5 +6,5 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 export const appRoutes = [
   {path: '', component: LoginPageComponent},
   {path: 'chat', component: ChatPageComponent},
-  {path: 'register', component: ChatPageComponent}
+  {path: 'register', component: RegisterPageComponent}
 ]

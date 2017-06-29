@@ -10,12 +10,13 @@ import {Item} from '../shared/items.interface';
 export class ListItemComponent implements OnInit{
   @Input() item: Item; 
   @Input() user: string;
+  @Input() userPhoto: string;
   avtor: boolean = false;
   constructor() { }
   ngOnInit(){
+    console.log(this.userPhoto);
     if(this.item.name == this.user){
       this.avtor = !this.avtor;
-      console.log(this.avtor, this.item.name, this.user);
     }
   }
 

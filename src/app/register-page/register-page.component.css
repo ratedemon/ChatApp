@@ -1,0 +1,14 @@
+.main__box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+.main__title{
+  text-align: center;
+}
+.main__btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

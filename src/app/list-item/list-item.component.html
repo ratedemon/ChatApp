@@ -1,6 +1,6 @@
 <div class="item__block" [ngClass]="{myself:avtor}">
-  <img src="http://www.topglobus.ru/forum/images/avatars/gallery/filmy/Batman.jpg" alt="" class="block__img" *ngIf="!avtor">
-  <img src="http://www.avatarsdb.com/avatars/spongebob_happy.jpg" alt="" class="block__img" *ngIf="avtor">
+  <img src="{{userPhoto}}" alt="" class="block__img" *ngIf="userPhoto">
+  <img src="http://www.avatarsdb.com/avatars/spongebob_happy.jpg" alt="" class="block__img" *ngIf="!userPhoto">
   <div class="block__list">
     <span class="block__msg card-panel blue" [ngClass]="{'darken-1': avtor, 'darken-4': !avtor}">{{item.message}}</span>
     <span class="block__name">{{item.name}}</span>    

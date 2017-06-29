@@ -17,7 +17,7 @@ export class ChatPageComponent implements OnInit {
     this.dataService.initUser().subscribe(data=>{this.user = data;});
   }
   Send(desc: string) {
-    this.dataService.sendMessage(this.user.displayName, desc);
+    this.dataService.sendMessage(this.user.displayName, desc, this.user.photoURL);
     this.msgVal = '';
   }
 }
