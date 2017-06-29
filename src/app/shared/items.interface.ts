@@ -1,4 +1,5 @@
 export interface Item{
   name: string,
-  message: string
+  message: string,
+  photoURL: string
 }

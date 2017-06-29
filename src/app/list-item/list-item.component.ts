@@ -19,5 +19,4 @@ export class ListItemComponent implements OnInit{
       this.avtor = !this.avtor;
     }
   }
-
 }

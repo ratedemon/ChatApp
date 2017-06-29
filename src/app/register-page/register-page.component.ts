@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../shared/data.service';
+import {LoginService} from '../shared/login.service';
+
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
@@ -14,7 +16,7 @@ export class RegisterPageComponent implements OnInit {
   imageFile: File;
   imageUrl: string = '';
   fullName: string = "";
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private loginService: LoginService) { }
   ngOnInit() {
     this.dataService.initUser().subscribe(data=>{this.user = data; console.log(this.user);})
   }
@@ -24,10 +26,6 @@ export class RegisterPageComponent implements OnInit {
     this.repeatPassword = "";
     this.fullName = "";
     console.log(fileurl);
-    // this.imageUrl = "";
-    // console.log(pic.target.files);
-    // console.log(em, pass);
-    this.dataService.registerUser(name, em, pass);
-    // this.dataService.saveUserInfo(name, em, pass);
+    this.loginService.registerUser(name,em,pass);
   }
 }
