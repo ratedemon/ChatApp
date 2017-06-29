@@ -1,0 +1,15 @@
+.chat__list{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.list__item{
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.message{
+  padding-bottom: 0;
+}

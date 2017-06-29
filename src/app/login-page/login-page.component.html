@@ -1,0 +1,35 @@
+<div class="container main__box">
+    <h4 class="col s12 main__title">
+      {{description}}
+    </h4>
+    <form class="col s12 form">
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <input id="email" type="email" class="validate">
+          <label for="email" data-error="wrong" data-success="right">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row main__btn">
+         <button class="btn waves-effect waves-light" type="submit" name="action">Sign in
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </form>
+    <h5 class="col s12 main__title">
+      Or come with: 
+    </h5>
+    <div class="col s6 offset-s3 main__login">
+      <button class="btn waves-effect waves-light light-blue darken-3" type="submit" name="action" (click)="loginFacebook()">Facebook
+        <i class="material-icons right">send</i>
+      </button>
+      <button class="btn waves-effect waves-light red darken-3" type="submit" name="action" (click)="loginGoogle()">Google
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </div>
