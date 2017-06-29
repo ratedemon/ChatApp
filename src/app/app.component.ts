@@ -18,10 +18,24 @@ export class AppComponent implements OnInit{
   year = new Date().getFullYear();
   user: any;
   msgVal: string = "";
-  constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router){}
+  isMain: boolean = false;
+  constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router){
+    router.events.subscribe((url:any) => {if(url.url == '/' && url.url.length < 2){
+      this.isMain = true
+    }else{
+      this.isMain = false;
+    }
+});
+  }
   ngOnInit(){
   //   this.dataService.initItems().subscribe(data=>{this.items=data; console.log(data)});
     this.dataService.initUser().subscribe(data=>{this.user = data; console.log(this.user)});
+    if(this.router.url == '/'){
+      this.isMain = !this.isMain;
+    }
+    else{
+      this.isMain = false;
+    }
   }
   logout(){
     this.dataService.logout();

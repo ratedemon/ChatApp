@@ -33,10 +33,10 @@ export class DataService {
 
   // }
   loginGoogle(){
-    return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider);
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
   loginFacebook(){
-    return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider);
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
   }
   logout(){
     return this.afAuth.auth.signOut()

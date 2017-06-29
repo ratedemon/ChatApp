@@ -78,6 +78,8 @@
   max-height: 100vh;
   overflow: hidden;
   overflow-y: scroll;
+}
+.center{
   display: flex;
   justify-content: center;
   align-items: center;
