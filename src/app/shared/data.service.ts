@@ -9,7 +9,10 @@ import {Item} from './items.interface';
 export class DataService {
   user: Observable<firebase.User>;
   items: FirebaseListObservable<Item[]>;
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {}
+  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
+    let storage = firebase.app().database();
+    console.log(storage);
+  }
   initItems(){
     return this.items = this.af.list('/messages', {
       query: {
@@ -23,4 +26,5 @@ export class DataService {
   sendMessage(name:string, msg:string, photo: string){
     return this.items.push({name: name, message: msg, photoURL: photo});
   }
+  
 }

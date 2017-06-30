@@ -77,9 +77,9 @@
   padding-top: 3.5em;
   width: 100%;
   flex: 1;
-  max-height: 100vh;
-  overflow: hidden;
-  overflow-y: scroll;
+  /*min-height: 100vh;*/
+  /*overflow: hidden;*/
+  /*overflow-y: scroll;*/
 }
 .center{
   display: flex;
