@@ -1,0 +1,24 @@
+{
+  "Main":{
+    "Title" : "ChatApp"
+  },
+  "Login":{
+    "Title" : "Welcome in new ChatApp",
+    "Email" : "Email",
+    "Password" : "Password",
+    "Sign" : "Sign in",
+    "Register" : "Registration",
+    "AnotherLogin" : "Or come with:",
+    "Facebook" : "Facebook",
+    "Google" : "Google"
+  },
+  "Register": {
+    "Title" : "Register Page",
+    "Full" : "Full Name",
+    "Email" : "Email",
+    "Password" : "Password",
+    "Repeat" : "Repeat Your Password",
+    "File" : "File",
+    "Sign" : "Sign in"
+  }
+}

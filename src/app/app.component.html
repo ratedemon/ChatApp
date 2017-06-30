@@ -1,23 +1,23 @@
 <header class="header row card-panel light-blue darken-3 waves-effect waves-light">
   <div class="container header__box">
-    <div class="col s4 offset-s4 header__title">
-      <h1 class="header__title_name white-text"><a routerLink="/">{{title}}</a></h1>
+    <div class="col s8 offset-s2 l4 offset-l4 header__title">
+      <h1 class="header__title_name white-text"><a routerLink="/">{{'Main.Title' | translate}}</a></h1>
     </div>
-    <div class="col s4 header__btns">
+    <div class="col s2 l4 header__btns">
       <i class="material-icons" *ngIf="!user?.uid">person_outline</i>
       <i class="material-icons tooltipped" *ngIf="user?.uid" data-position="bottom" data-delay="50" data-tooltip="Log out" (click)="logout()" >person</i>
     </div>
   </div>
 </header>
-<main class="main row" [ngClass]="{'center':isMain}">
+<main class="main row" [ngClass]="{'center':isMain}" #sendMessage>
   <!--<login-page [items]="items" [user]="user"></login-page>-->
   <router-outlet></router-outlet>
 </main>
 <footer class="page-footer footer">
-    <div class="footer-copyright">
-      <div class="container">
-      © {{year}} Copyright Text
-      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-      </div>
+  <div class="footer-copyright">
+    <div class="container">
+    © {{year}} Copyright Text
+    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
     </div>
-  </footer>
+  </div>
+</footer>

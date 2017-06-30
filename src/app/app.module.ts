@@ -18,6 +18,8 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpModule, Http } from '@angular/http';
 import {createTranslateLoader} from './translateLoader';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { PopupComponent } from './popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +27,11 @@ import {createTranslateLoader} from './translateLoader';
     ListItemComponent,
     LoginPageComponent,
     ChatPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    PopupComponent
   ],
   imports: [
-    BrowserModule, AngularFireModule.initializeApp(config.firebase), AngularFireAuthModule, AngularFireDatabaseModule, FormsModule, RouterModule.forRoot(appRoutes),TranslateModule.forRoot({
+    BrowserModule, AngularFireModule.initializeApp(config.firebase), AngularFireAuthModule, AngularFireDatabaseModule, FormsModule, NoopAnimationsModule,RouterModule.forRoot(appRoutes), HttpModule,TranslateModule.forRoot({
       loader:{
         provide: TranslateLoader,
         // можно указать свой путь к папке i18n где находятся файлы с переводом
@@ -36,6 +39,9 @@ import {createTranslateLoader} from './translateLoader';
         deps: [Http]
       }
     })
+  ],
+  exports:[
+    TranslateModule
   ],
   providers: [DataService, LoginService],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import {DataService} from '../shared/data.service';
 import {Item} from '../shared/items.interface';
 
 @Component({
+  moduleId: module.id,
   selector: 'app-chat-page',
   templateUrl: './chat-page.component.html',
   styleUrls: ['./chat-page.component.css']
@@ -11,6 +12,7 @@ export class ChatPageComponent implements OnInit {
   items: Item[] = [];
   user: any;
   msgVal: string = '';
+   
   constructor(private dataService: DataService) { }
   ngOnInit() {
     this.dataService.initItems().subscribe(data=>{this.items=data;});
@@ -20,4 +22,5 @@ export class ChatPageComponent implements OnInit {
     this.dataService.sendMessage(this.user.displayName, desc, this.user.photoURL);
     this.msgVal = '';
   }
+   
 }

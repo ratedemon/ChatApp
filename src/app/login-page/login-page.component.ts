@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import {Item} from '../shared/items.interface';
 import {DataService} from '../shared/data.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {LoginService} from '../shared/login.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'login-page',
@@ -11,12 +12,17 @@ import {LoginService} from '../shared/login.service';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  description: string = "Welcome in new ChatApp";
   items: Item[] = [];
   user: any;
   email:string = "";
   password:string = "";
-  constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute, private loginService: LoginService) { }
+  constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute, private loginService: LoginService, private translate: TranslateService) { 
+    // translate.addLangs(['en','ru']);
+
+    // translate.setDefaultLang('en');
+    // translate.use('en');
+    // let browserLang = translate.getBrowserLang();
+  }
 
   ngOnInit() {
     this.dataService.initItems().subscribe(data=>{this.items=data;});

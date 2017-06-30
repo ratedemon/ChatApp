@@ -18,3 +18,14 @@
   justify-content: space-around;
   align-items: center;
 }
+@media only screen and (max-width: 600px){
+  .main__title{
+    font-size: 1.4em;
+  }
+  .main__login{
+    flex-direction: column;
+  }
+  .main__login .btn{
+    margin: .75em 0
+  }
+}
