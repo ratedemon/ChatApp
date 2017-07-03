@@ -10,7 +10,9 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 export class DataService {
   user: Observable<firebase.User>;
   items: FirebaseListObservable<Item[]>;
-  currentPage: number = 1; 
+  firstKey = new BehaviorSubject('');
+  nextKey = new BehaviorSubject('');
+  pageSize = new BehaviorSubject(10);
   constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
     // this.pageSize.next(this.counter*30);
     // this.items = this.af.list('/message',{
@@ -18,21 +20,26 @@ export class DataService {
     //     limitToLast: this.page
     //   }
     // });
-  }
-  pagination(){
-    // this.counter++;
-    // this.items.subscribe(data=>console.log(data));
-    // console.log(this.items.)
-    this.currentPage++;
-    this.items.subscribe(data=>console.log(data));
-    
-  }
-  initItems(){
-    return this.items = this.af.list('/messages', {
+    this.items = this.af.list('/messages', {
       query: {
-        limitToLast: this.currentPage*30
+        orderByKey: true,
+        startAt: this.firstKey,
+        limitToFirst: this.pageSize
       }
     });
+  }
+  pagination(){
+    this.items.subscribe((data)=>{
+      if(data.length===this.pageSize.getValue()){
+        // this.nextKey.next(data.)
+        // console.log(data[9].$key);
+        this.nextKey.next(data[data.length-1].$key);
+      }
+    });
+    this.firstKey.next(this.nextKey.getValue());
+  }
+  initItems(){
+    return this.items;
   }
   initUser(){
     return this.user = this.afAuth.authState;
