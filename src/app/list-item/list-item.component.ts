@@ -14,7 +14,6 @@ export class ListItemComponent implements OnInit{
   avtor: boolean = false;
   constructor() { }
   ngOnInit(){
-    console.log(this.userPhoto);
     if(this.item.name == this.user){
       this.avtor = !this.avtor;
     }
