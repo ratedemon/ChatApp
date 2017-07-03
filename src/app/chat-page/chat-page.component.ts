@@ -36,6 +36,5 @@ export class ChatPageComponent implements OnInit {
   }
   showMore(){
     this.dataService.pagination();
-    // console.log(this.items);
   }
 }

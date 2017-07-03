@@ -1,5 +1,6 @@
 export interface Item{
   name: string,
   message: string,
-  photoURL: string
+  photoURL: string,
+  $key: any
 }
