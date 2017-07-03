@@ -77,6 +77,9 @@
   padding-top: 3.5em;
   width: 100%;
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /*min-height: 100vh;*/
   /*overflow: hidden;*/
   /*overflow-y: scroll;*/
@@ -93,6 +96,6 @@
 }
 @media only screen and (max-width: 600px){
   .header__title_name{
-    font-size: 1.6em;
+    font-size: 2em;
   }
 }

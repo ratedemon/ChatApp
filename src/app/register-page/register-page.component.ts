@@ -3,6 +3,7 @@ import {DataService} from '../shared/data.service';
 import {LoginService} from '../shared/login.service';
 import {TranslateService, TranslatePipe} from '@ngx-translate/core';
 import {Router} from "@angular/router";
+import {DialogService} from '../shared/dialog.service';
 
 @Component({
   selector: 'app-register-page',
@@ -17,13 +18,7 @@ export class RegisterPageComponent implements OnInit {
   imageFile: File;
   imageUrl: string = '';
   fullName: string = "";
-  constructor(private dataService: DataService, private loginService: LoginService, private translate: TranslateService, private router:Router) { 
-    // translate.addLangs(['en','ru']);
-
-    // translate.setDefaultLang('en');
-    // translate.use('en');
-    // let browserLang = translate.getBrowserLang();
-  }
+  constructor(private dataService: DataService, private loginService: LoginService, private translate: TranslateService, private router:Router, private dialogService: DialogService) {}
   ngOnInit() {
     this.dataService.initUser().subscribe(data=>{this.user = data;})
   }
@@ -35,7 +30,9 @@ export class RegisterPageComponent implements OnInit {
       this.repeatPassword = "";
       this.fullName = "";
       this.router.navigate(['']);
-    }).catch(err=>alert(err));
+    }).catch(err=>this.openDialog(err.name,err.message));
   }
-
+  openDialog(title, message){
+    this.dialogService.popup(title, message);
+  }
 }

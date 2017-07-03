@@ -1,17 +1,13 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-
+import { Component} from '@angular/core';
+import {MdDialogRef} from '@angular/material';
 @Component({
-  selector: 'popup',
+  selector: 'app-popup',
   templateUrl: './popup.component.html',
   styleUrls: ['./popup.component.css']
 })
-export class PopupComponent implements OnInit {
-  @Input() message: string = "";
-  @Input() type: string = "";
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class PopupComponent {
+  title: string;
+  message: string
+  constructor(private dialogRef: MdDialogRef<PopupComponent>) { }
 
 }

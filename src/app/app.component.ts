@@ -16,12 +16,12 @@ import {TranslateService} from '@ngx-translate/core';
 
 export class AppComponent implements OnInit{
   user: any;  
+  year = new Date().getFullYear();
   constructor(private dataService: DataService, private router: Router, private loginService: LoginService, private translate: TranslateService){
     translate.addLangs(['en','ru']);
-
     translate.setDefaultLang('en');
-    translate.use('en');
     let browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
   }
   ngOnInit(){
     this.dataService.initUser().subscribe(data=>{this.user = data; console.log(this.user)});

@@ -1,6 +1,7 @@
 {
   "Main":{
-    "Title" : "ChatApp"
+    "Title" : "ChatApp",
+    "Exit" : "Exit"
   },
   "Login":{
     "Title" : "Welcome in new ChatApp",

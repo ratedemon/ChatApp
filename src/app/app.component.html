@@ -5,12 +5,11 @@
     </div>
     <div class="col s2 l4 header__btns">
       <i class="material-icons" *ngIf="!user?.uid">person_outline</i>
-      <i class="material-icons tooltipped" *ngIf="user?.uid" data-position="bottom" data-delay="50" data-tooltip="Log out" (click)="logout()" >person</i>
+      <i class="material-icons tooltipped" *ngIf="user?.uid" mdTooltip="{{'Main.Exit' | translate}}" (click)="logout()" >person</i>
     </div>
   </div>
 </header>
-<main class="main row" [ngClass]="{'center':isMain}">
-  <!--<login-page [items]="items" [user]="user"></login-page>-->
+<main class="main row">
   <router-outlet></router-outlet>
 </main>
 <footer class="page-footer footer">

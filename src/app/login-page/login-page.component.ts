@@ -5,6 +5,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {LoginService} from '../shared/login.service';
 import {TranslateService} from '@ngx-translate/core';
+import {DialogService} from '../shared/dialog.service';
 
 @Component({
   selector: 'login-page',
@@ -16,13 +17,7 @@ export class LoginPageComponent implements OnInit {
   user: any;
   email:string = "";
   password:string = "";
-  constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute, private loginService: LoginService, private translate: TranslateService) { 
-    // translate.addLangs(['en','ru']);
-
-    // translate.setDefaultLang('en');
-    // translate.use('en');
-    // let browserLang = translate.getBrowserLang();
-  }
+  constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute, private loginService: LoginService, private translate: TranslateService, private dialogService: DialogService) {  }
 
   ngOnInit() {
     this.dataService.initItems().subscribe(data=>{this.items=data;});
@@ -33,17 +28,21 @@ export class LoginPageComponent implements OnInit {
   });
   }
   loginGoogle(){
-    this.loginService.loginGoogle();
+    this.loginService.loginGoogle().catch(err=>this.openDialog(err.name,err.message));
   }
   loginFacebook(){
-    this.loginService.loginFacebook();
+    this.loginService.loginFacebook().catch(err=>this.openDialog(err.name,err.message));
   }
   loginForm(em, pas){
-    this.email = "";
-    this.password = "";
-    this.loginService.loginEmailandPassword(em,pas);
+    this.loginService.loginEmailandPassword(em,pas).then(data=>{
+      this.email = "";
+      this.password = "";
+    }).catch(err=>this.openDialog(err.name, err.message));
   }
   go(){
     this.router.navigate(['chat']);
+  }
+  openDialog(title, message){
+    this.dialogService.popup(title, message);
   }
 }

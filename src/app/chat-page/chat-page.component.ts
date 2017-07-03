@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {Router} from '@angular/router';
 import {DataService} from '../shared/data.service';
 import {Item} from '../shared/items.interface';
@@ -9,7 +9,7 @@ import {Item} from '../shared/items.interface';
   templateUrl: './chat-page.component.html',
   styleUrls: ['./chat-page.component.css']
 })
-export class ChatPageComponent implements OnInit, AfterViewChecked {
+export class ChatPageComponent implements OnInit {
   items: Item[] = [];
   user: any;
   msgVal: string = '';
@@ -19,18 +19,13 @@ export class ChatPageComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     this.dataService.initItems().subscribe(data=>{this.items=data;});
     this.dataService.initUser().subscribe(data=>{this.user = data;});
-    this.scrollToBottom();
+    setTimeout(()=>{this.scrollToBottom();}, 3000);
+    
   }
   Send(desc: string) {
     this.dataService.sendMessage(this.user.displayName, desc, this.user.photoURL);
     this.msgVal = '';
     this.scrollToBottom();
-  }
-  ngAfterViewChecked():void{
-    // if(!this.look){
-      // this.scrollToBottom();
-      // this.look = !this.look;
-    // }
   }
   scrollToBottom(){
       let main = document.querySelector('.main');
@@ -38,5 +33,9 @@ export class ChatPageComponent implements OnInit, AfterViewChecked {
       console.log('scroll');
       // console.log(this.myScrollContainer.nativeElement);
       // this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+  }
+  showMore(){
+    this.dataService.pagination();
+    // console.log(this.items);
   }
 }

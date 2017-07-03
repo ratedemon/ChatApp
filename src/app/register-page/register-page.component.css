@@ -1,3 +1,6 @@
+:host{
+  width: 100%;
+}
 .main__box{
   display: flex;
   flex-direction: column;

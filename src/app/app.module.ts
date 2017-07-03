@@ -19,8 +19,9 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpModule, Http } from '@angular/http';
 import {createTranslateLoader} from './translateLoader';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from "@angular/material";
 import { PopupComponent } from './popup/popup.component';
-
+import {DialogService} from './shared/dialog.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,7 @@ import { PopupComponent } from './popup/popup.component';
     PopupComponent
   ],
   imports: [
-    BrowserModule, AngularFireModule.initializeApp(config.firebase), AngularFireAuthModule, AngularFireDatabaseModule, FormsModule, NoopAnimationsModule,RouterModule.forRoot(appRoutes), HttpModule,TranslateModule.forRoot({
+    BrowserModule, AngularFireModule.initializeApp(config.firebase), AngularFireAuthModule, AngularFireDatabaseModule, FormsModule, NoopAnimationsModule,RouterModule.forRoot(appRoutes), HttpModule, MaterialModule, TranslateModule.forRoot({
       loader:{
         provide: TranslateLoader,
         // можно указать свой путь к папке i18n где находятся файлы с переводом
@@ -43,7 +44,8 @@ import { PopupComponent } from './popup/popup.component';
   exports:[
     TranslateModule
   ],
-  providers: [DataService, LoginService],
-  bootstrap: [AppComponent]
+  providers: [DataService, LoginService, DialogService],
+  bootstrap: [AppComponent], 
+  entryComponents: [PopupComponent]
 })
 export class AppModule { }
