@@ -24,6 +24,7 @@ export class RegisterPageComponent implements OnInit {
   }
   loginForm(name,em, pass, fileurl){
     // console.log(fileurl);
+    // this.loginService.uploadPhoto(fileurl);
     this.loginService.registerUser(name,em,pass).then(data=>{
       this.email = "";
       this.password = "";
@@ -31,6 +32,12 @@ export class RegisterPageComponent implements OnInit {
       this.fullName = "";
       this.router.navigate(['']);
     }).catch(err=>this.openDialog(err.name,err.message));
+  }
+  uploadPhoto(event){
+    // console.log(file);
+    let file = event.srcElement.files[0];
+    // console.log(file);
+    this.loginService.uploadPhoto(file);
   }
   openDialog(title, message){
     this.dialogService.popup(title, message);

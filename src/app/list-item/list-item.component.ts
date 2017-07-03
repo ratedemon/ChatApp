@@ -12,6 +12,7 @@ export class ListItemComponent implements OnInit{
   @Input() user: string;
   @Input() userPhoto: string;
   avtor: boolean = false;
+  hide: boolean = true;
   constructor() { }
   ngOnInit(){
     if(this.item.name == this.user){

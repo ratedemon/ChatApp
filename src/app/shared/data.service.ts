@@ -42,5 +42,4 @@ export class DataService {
   sendMessage(name:string, msg:string, photo: string){
     return this.items.push({name: name, message: msg, photoURL: photo});
   }
-  
 }

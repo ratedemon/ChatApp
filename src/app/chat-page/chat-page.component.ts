@@ -20,7 +20,6 @@ export class ChatPageComponent implements OnInit {
     this.dataService.initItems().subscribe(data=>{this.items=data;});
     this.dataService.initUser().subscribe(data=>{this.user = data;});
     setTimeout(()=>{this.scrollToBottom();}, 3000);
-    
   }
   Send(desc: string) {
     this.dataService.sendMessage(this.user.displayName, desc, this.user.photoURL);
@@ -28,11 +27,9 @@ export class ChatPageComponent implements OnInit {
     this.scrollToBottom();
   }
   scrollToBottom(){
-      let main = document.querySelector('.main');
-      window.scrollTo(0, main.scrollHeight);
-      console.log('scroll');
-      // console.log(this.myScrollContainer.nativeElement);
-      // this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    let main = document.querySelector('.main');
+    window.scrollTo(0, main.scrollHeight);
+    console.log('scroll');
   }
   showMore(){
     this.dataService.pagination();

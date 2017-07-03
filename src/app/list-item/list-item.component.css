@@ -63,3 +63,15 @@
   transform: translateY(0);
   opacity: 1;
 }
+.hideMessage{
+  max-height: 6.5em;
+  overflow: hidden;
+  position: relative;
+  padding-right: 2.6%;
+}
+.hideMessage .material-icons{
+  position: absolute;
+  bottom: 0;
+  right: 1.5%;
+  cursor: pointer;
+}

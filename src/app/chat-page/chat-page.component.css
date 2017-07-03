@@ -7,11 +7,15 @@
   justify-content: center;
   align-items: center;
 }
+.chat__box .btn{
+  margin-top: .5em;
+}
 .chat__list{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
+  flex: 1;
   margin-bottom:7em;
 }
 .list__item{
@@ -22,6 +26,8 @@
 }
 .message{
   padding-bottom: 0;
+  max-height: 5em;
+  overflow-y: auto;
 }
 .form-chat{
   display: flex;
@@ -37,8 +43,34 @@
   width: 80%;
   margin-bottom: 0;
 }
+.forms, .send-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.send-btn{
+  width: 3em;
+  height: 3em;
+}
+.send-btn .material-icons{
+  line-height: inherit;
+}
 @media only screen and (max-width: 600px){
   .chat__box{
     align-items: stretch
+  }
+  .form-chat > *{
+    width: 100%;
+    font-size: 1em;
+  }
+  .message{
+    font-size: 1.1em;
+  }
+  .send-btn{
+    width: 2.5em;
+    height: 2.5em;
+  }
+  .send{
+    flex: 1;
   }
 }

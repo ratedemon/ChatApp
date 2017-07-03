@@ -21,7 +21,9 @@ export class AppComponent implements OnInit{
     translate.addLangs(['en','ru']);
     translate.setDefaultLang('en');
     let browserLang = translate.getBrowserLang();
+    // console.log(browserLang, browserLang.match(/en|ru/));
     translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
+    // translate.use('en');
   }
   ngOnInit(){
     this.dataService.initUser().subscribe(data=>{this.user = data; console.log(this.user)});

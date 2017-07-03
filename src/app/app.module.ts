@@ -22,6 +22,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "@angular/material";
 import { PopupComponent } from './popup/popup.component';
 import {DialogService} from './shared/dialog.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,8 +36,7 @@ import {DialogService} from './shared/dialog.service';
     BrowserModule, AngularFireModule.initializeApp(config.firebase), AngularFireAuthModule, AngularFireDatabaseModule, FormsModule, NoopAnimationsModule,RouterModule.forRoot(appRoutes), HttpModule, MaterialModule, TranslateModule.forRoot({
       loader:{
         provide: TranslateLoader,
-        // можно указать свой путь к папке i18n где находятся файлы с переводом
-        useFactory: (createTranslateLoader), //изменилось
+        useFactory: (createTranslateLoader),
         deps: [Http]
       }
     })

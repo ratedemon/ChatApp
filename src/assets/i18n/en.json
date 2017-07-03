@@ -23,6 +23,7 @@
     "Sign" : "Sign in"
   },
   "Message":{
-    "Mess" : "Your Message"
+    "Mess" : "Your Message",
+    "More" : "Show More"
   }
 }
