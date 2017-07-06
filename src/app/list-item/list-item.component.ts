@@ -16,6 +16,9 @@ export class ListItemComponent implements OnInit{
   constructor() { }
   ngOnInit(){
     // console.log(this.item,this.user, this.userPhoto);
+    // if(this.item.message.length>250){
+    //   this.hide = true
+    // }
     if(this.item.name == this.user){
       this.avtor = !this.avtor;
     }

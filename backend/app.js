@@ -19,7 +19,7 @@ io.on('connection', (socket)=>{
     let stream = db.collection('message').find({}).sort({_id:-1}).limit(30).toArray((err,result)=>{
       // console.log(result);
       messages = result;
-      socket.emit('chat', result);
+      socket.emit('chat', messages);
     })
   });
   socket.on('disconnect',()=>{
@@ -38,7 +38,7 @@ io.on('connection', (socket)=>{
     // socket.broadcast.emit('chat', msg);
     // socket.broadcast.send(msg);
     // socket.json.send(msg);
-    messages.push(msg);
+    messages.unshift(msg);
     io.sockets.emit('messageToClient', messages);
   });
   socket.on('pagination', (count)=>{
@@ -49,7 +49,7 @@ io.on('connection', (socket)=>{
 
         }else{
           messages = result;
-          socket.emit('chat', result);
+          socket.emit('chat', messages);
         }
       })
     })

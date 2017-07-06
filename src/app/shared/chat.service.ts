@@ -21,6 +21,7 @@ export class ChatService {
         console.log(data);
       });
       this.socket.on('messageToClient', (msg)=>{
+        console.log(msg);
         msg = msg.reverse();
         observer.next(msg);
         console.log(msg)
