@@ -26,7 +26,7 @@ export class AppComponent implements OnInit{
     // translate.use('en');
   }
   ngOnInit(){
-    this.dataService.initUser().subscribe(data=>{this.user = data; console.log(this.user)});
+    this.dataService.initUser().subscribe(data=>{this.user = data});
   }
   logout(){
     this.loginService.logout();

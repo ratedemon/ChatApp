@@ -15,6 +15,7 @@ export class ListItemComponent implements OnInit{
   hide: boolean = true;
   constructor() { }
   ngOnInit(){
+    // console.log(this.item,this.user, this.userPhoto);
     if(this.item.name == this.user){
       this.avtor = !this.avtor;
     }

@@ -2,7 +2,7 @@
   <button class="waves-effect waves-light btn" (click)="showMore()"><i class="material-icons right">cloud</i>{{'Message.More' | translate}}</button>
   <ul class="col s12 chat__list" #sendMessage>
     <li class="list__item" *ngFor="let item of items">
-      <list-item [item]="item" [user]="user.displayName" [userPhoto]="item.photoURL"></list-item>
+      <list-item [item]="item" [user]="user?.displayName" [userPhoto]="item.photoURL"></list-item>
     </li>
   </ul>
   <form class="col s12 form-chat">
