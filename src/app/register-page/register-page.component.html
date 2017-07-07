@@ -31,7 +31,7 @@
          <div class="file-field input-field">
           <div class="btn">
             <span>{{'Register.File' | translate}}</span>
-            <input type="file" [(ngModel)]="imageFile" name="file" (change)="uploadPhoto($event)">
+            <input type="file" [(ngModel)]="imageFile" name="file" accept="image/*" (change)="uploadPhoto($event)">
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text" [(ngModel)]="imageUrl" name="fileurl" >

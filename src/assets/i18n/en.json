@@ -1,7 +1,8 @@
 {
   "Main":{
     "Title" : "ChatApp",
-    "Exit" : "Exit"
+    "Exit" : "Exit", 
+    "Online" : "Now Online"
   },
   "Login":{
     "Title" : "Welcome in new ChatApp",

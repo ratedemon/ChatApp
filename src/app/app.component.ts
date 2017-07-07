@@ -6,6 +6,7 @@ import {Item} from './shared/items.interface';
 import {ActivatedRoute, Router } from '@angular/router';
 import {LoginService} from './shared/login.service';
 import {TranslateService} from '@ngx-translate/core';
+import {ChatService} from './shared/chat.service';
 
 @Component({
   moduleId: module.id,
@@ -17,7 +18,9 @@ import {TranslateService} from '@ngx-translate/core';
 export class AppComponent implements OnInit{
   user: any;  
   year = new Date().getFullYear();
-  constructor(private dataService: DataService, private router: Router, private loginService: LoginService, private translate: TranslateService){
+  online_people: number = 0;
+  initPeople;
+  constructor(private dataService: DataService, private router: Router, private loginService: LoginService, private translate: TranslateService, private chatService: ChatService){
     translate.addLangs(['en','ru']);
     translate.setDefaultLang('en');
     let browserLang = translate.getBrowserLang();
@@ -26,10 +29,13 @@ export class AppComponent implements OnInit{
     // translate.use('en');
   }
   ngOnInit(){
-    this.dataService.initUser().subscribe(data=>{this.user = data});
+    this.initPeople = this.dataService.initUser().subscribe(data=>{this.user = data});
+    this.chatService.livePeople().subscribe(data=>{this.online_people = data; console.log(data)});
   }
   logout(){
     this.loginService.logout();
     this.router.navigate(['/']);
+    this.initPeople.unsubscribe();
+    this.online_people = null;
   }
 }

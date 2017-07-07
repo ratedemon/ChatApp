@@ -1,6 +1,9 @@
 <header class="header row card-panel light-blue darken-3 waves-effect waves-light">
   <div class="container header__box">
-    <div class="col s8 offset-s2 l4 offset-l4 header__title">
+    <div class="col s2 l4 header__online">
+      <span class="white-text" mdTooltip="{{'Main.Online' | translate}}" *ngIf="online_people">{{online_people}}</span>
+    </div>
+    <div class="col s8 l4 header__title">
       <h1 class="header__title_name white-text"><a routerLink="/">{{'Main.Title' | translate}}</a></h1>
     </div>
     <div class="col s2 l4 header__btns">

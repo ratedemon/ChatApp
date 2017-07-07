@@ -16,10 +16,12 @@ const url = `mongodb://${admin.login}:${admin.password}@ds151452.mlab.com:51452/
 app.use(express.static(__dirname + '/dist'));
 
 let messages = [];
+let online = 0;
 
 io.on('connection', (socket)=>{
-  console.log('client connected');
-  
+  console.log('client connected', online);
+  ++online;
+  io.sockets.emit('onlineNow', online);
   mongoClient.connect(url, (err,db)=>{
     let stream = db.collection('message').find({}).sort({_id:-1}).limit(30).toArray((err,result)=>{
       // console.log(result);
@@ -28,8 +30,11 @@ io.on('connection', (socket)=>{
     })
   });
   socket.on('disconnect',()=>{
-    console.log('client disconnect');
+    --online;
+    io.sockets.emit('onlineNow', online);
+    console.log('client disconnect', online);
   });
+  socket.broadcast.emit('writing', true);
   socket.on('messaging', (msg)=>{
     console.log(msg);
     mongoClient.connect(url, (err,db)=>{
@@ -50,18 +55,27 @@ io.on('connection', (socket)=>{
     console.log(count);
     mongoClient.connect(url, (err,db)=>{
       db.collection('message').find({}).sort({_id:-1}).limit(count*30).toArray((err,result)=>{
-        if(messages.length == result.length){
-
-        }else{
           messages = result;
           socket.emit('chat', messages);
-        }
       })
     })
   })
 })
 
-// app.use('/', api);
+// app.post('/source', upload.single('avatar'), (req,res,next)=>{
+//   console.log("IN POST");
+//   console.log(req.file, req);
+// });
+
+app.use(function(req, res, next) {
+//set headers to allow cross origin request.
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+app.use('/', api);
  
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

@@ -22,8 +22,6 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "@angular/material";
 import { PopupComponent } from './popup/popup.component';
 import {DialogService} from './shared/dialog.service';
-import { PrivateChatComponent } from './private-chat/private-chat.component';
-import {PrivateDialogService} from './shared/private-dialog.service';
 import {ChatService} from './shared/chat.service';
 
 @NgModule({
@@ -33,8 +31,7 @@ import {ChatService} from './shared/chat.service';
     LoginPageComponent,
     ChatPageComponent,
     RegisterPageComponent,
-    PopupComponent,
-    PrivateChatComponent
+    PopupComponent
   ],
   imports: [
     BrowserModule, AngularFireModule.initializeApp(config.firebase), AngularFireAuthModule, AngularFireDatabaseModule, FormsModule, NoopAnimationsModule,RouterModule.forRoot(appRoutes), HttpModule, MaterialModule, TranslateModule.forRoot({
@@ -48,7 +45,7 @@ import {ChatService} from './shared/chat.service';
   exports:[
     TranslateModule
   ],
-  providers: [DataService, LoginService, DialogService, PrivateDialogService, ChatService],
+  providers: [DataService, LoginService, DialogService, ChatService],
   bootstrap: [AppComponent], 
   entryComponents: [PopupComponent]
 })

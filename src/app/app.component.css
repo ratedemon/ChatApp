@@ -89,7 +89,13 @@
   justify-content: center;
   align-items: center;
 }
-
+.header__online{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
 .footer{
   padding: 0;
   display: none;
