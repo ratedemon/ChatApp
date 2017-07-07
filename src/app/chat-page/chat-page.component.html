@@ -7,6 +7,7 @@
   </ul>
   <form class="col s12 form-chat">
     <div class="row forms">
+      <!--<span class="form-write grey-text" *ngIf="writing">User write a message</span>-->
       <div class="input-field col s12 send">
         <textarea id="textarea1" class="materialize-textarea message" (keyup.enter)="Send($event.target.value)" [(ngModel)]="msgVal"  [ngModelOptions]="{standalone: true}" ></textarea>
         <label for="textarea1">{{'Message.Mess' | translate}}</label>

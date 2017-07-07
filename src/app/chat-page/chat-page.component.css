@@ -48,12 +48,31 @@
   justify-content: center;
   align-items: center;
 }
+.forms{
+  position: relative;
+}
+.form-write{
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  padding-left: 1em;
+  animation: writing .8s ease infinite alternate-reverse;
+}
 .send-btn{
   width: 3em;
   height: 3em;
 }
 .send-btn .material-icons{
   line-height: inherit;
+}
+@keyframes writing{
+  from{ 
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
 }
 @media only screen and (max-width: 600px){
   .chat__box{

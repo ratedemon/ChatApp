@@ -17,16 +17,13 @@ export class ChatService {
       this.socket = io(this.url);
       this.socket.on('chat', (data)=>{
         data = data.reverse();
+        console.log(observable, observer, data);
         observer.next(data);
-        console.log(data);
       });
       this.socket.on('messageToClient', (msg)=>{
-        console.log(msg);
         msg = msg.reverse();
         observer.next(msg);
-        console.log(msg)
-      })
-      // console.log(this.socket);
+      });
       return ()=>{
         this.socket.disconnect();
       }

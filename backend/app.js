@@ -3,12 +3,17 @@ const app = express();
 const api = require('./routes');
 const http = require('http');
 const server = http.createServer(app);
+
+
 const io = require('socket.io').listen(server);
 
 server.listen(5000);
 const mongoClient = require('mongodb').MongoClient;
 const objectId = require("mongodb").ObjectID;
-const url = "mongodb://localhost:27017/chatapp";
+// const url = "mongodb://localhost:27017/chatapp";
+const admin = require('./system.info');
+
+const url = `mongodb://${admin.login}:${admin.password}@ds151452.mlab.com:51452/chatapp`
 
 let messages = [];
 

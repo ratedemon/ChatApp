@@ -16,6 +16,7 @@ export class ChatPageComponent implements OnInit {
   user: any;
   msgVal: string = '';
   // look: boolean = false; 
+  writing = true;
   constructor(private dataService: DataService, private router: Router, private chatService: ChatService) { }
   // @ViewChild('sendMessage') private myScrollContainer: ElementRef; 
   // ngOnInit() {
