@@ -3,8 +3,6 @@ const app = express();
 const api = require('./routes');
 const http = require('http');
 const server = http.createServer(app);
-
-
 const io = require('socket.io').listen(server);
 
 server.listen(5000);
@@ -14,6 +12,8 @@ const objectId = require("mongodb").ObjectID;
 const admin = require('./system.info');
 
 const url = `mongodb://${admin.login}:${admin.password}@ds151452.mlab.com:51452/chatapp`
+
+app.use(express.static(__dirname + '/dist'));
 
 let messages = [];
 
