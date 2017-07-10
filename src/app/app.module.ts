@@ -23,6 +23,7 @@ import {MaterialModule} from "@angular/material";
 import { PopupComponent } from './popup/popup.component';
 import {DialogService} from './shared/dialog.service';
 import {ChatService} from './shared/chat.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {ChatService} from './shared/chat.service';
     PopupComponent
   ],
   imports: [
-    BrowserModule, AngularFireModule.initializeApp(config.firebase), AngularFireAuthModule, AngularFireDatabaseModule, FormsModule, NoopAnimationsModule,RouterModule.forRoot(appRoutes), HttpModule, MaterialModule, TranslateModule.forRoot({
+    BrowserModule, AngularFireModule.initializeApp(config.firebase),
+    BrowserAnimationsModule,AngularFireAuthModule, AngularFireDatabaseModule, FormsModule, NoopAnimationsModule,RouterModule.forRoot(appRoutes), HttpModule, MaterialModule, TranslateModule.forRoot({
       loader:{
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),

@@ -7,9 +7,9 @@ import {config} from './firebaseConfig';
 @Injectable()
 export class LoginService {
   constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {}
-  registerUser(name, email, password){
+  registerUser(name, email, password, image){
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(user=>{
-      firebase.auth().currentUser.updateProfile({displayName:name, photoURL: ''});
+      firebase.auth().currentUser.updateProfile({displayName:name, photoURL: `backend/images/${image}`});
     });
   }
   uploadPhoto(file){

@@ -1,14 +1,33 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, Input } from '@angular/core';
 import {Router} from '@angular/router';
 import {DataService} from '../shared/data.service';
 import {Item} from '../shared/items.interface';
 import {ChatService} from '../shared/chat.service';
+import {trigger,state,style,animate,transition, keyframes, group} from '@angular/animations';
 
 @Component({
   moduleId: module.id,
   selector: 'app-chat-page',
   templateUrl: './chat-page.component.html',
-  styleUrls: ['./chat-page.component.css']
+  styleUrls: ['./chat-page.component.css'],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({opacity: 1, transform: 'translateX(0)'})),
+      transition('void => *', [
+        style({
+          opacity: 0,
+          transform: 'translateX(-100%)'
+        }),
+        animate('0.2s ease-in')
+      ]),
+      transition('* => void', [
+        animate('0.2s 0.1s ease-out', style({
+          opacity: 0,
+          transform: 'translateX(100%)'
+        }))
+      ])
+    ])
+  ]
 })
 export class ChatPageComponent implements OnInit, OnDestroy {
   items: any;
@@ -37,7 +56,6 @@ export class ChatPageComponent implements OnInit, OnDestroy {
     setTimeout(()=>{this.scrollToBottom();}, 3000);    
   }
   Send(desc: string){
-    console.log(this.user.photoURL);
     this.chatService.sendMessage(this.user.displayName, desc, this.user.photoURL);
     this.msgVal = ""
   }

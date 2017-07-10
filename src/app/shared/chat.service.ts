@@ -62,14 +62,14 @@ export class ChatService {
     this.socket.emit('pagination', ++this.couter);
   }
   uploadImage(file, options){
-  //   let headers = new Headers({ 'Content-Type': file.type });
-  //   let options = new RequestOptions({ headers: headers });
-  //   console.log(file);
-  //   return this.http.post(this.url+'/source', file, options).map(this.extractData).catch(err=>{console.log(err);
-  //     return Observable.throw(err.message);
-  // });
-  console.log(file, options);
-    return this.http.post(`${this.url}/source`, file, options).map(res=>{res.json()}).catch(err=>Observable.throw(err));
+    return new Promise((resolve,reject)=>{
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", this.url+'/source', true);
+      xhr.send(file);
+      xhr.onload = function(){
+        resolve(xhr.responseText);
+      }
+    })
   }
   private extractData(res: Response) {
     let body = res.json();
