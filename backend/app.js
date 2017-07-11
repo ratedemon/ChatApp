@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const api = require('./routes');
+const photos = require('./user_photo');
 const http = require('http');
 const server = http.createServer(app);
 const io = require('socket.io').listen(server);
@@ -38,7 +39,7 @@ io.on('connection', (socket)=>{
   socket.on('messaging', (msg)=>{
     console.log(msg);
     mongoClient.connect(url, (err,db)=>{
-      let stream = db.collection('message').insert({message: msg.message, name: msg.name, photoURL: msg.photoURL}, (err, result)=>{
+      let stream = db.collection('message').insert({message: msg.message, name: msg.name, photoURL: msg.photoURL, image: msg.image}, (err, result)=>{
         if(err){console.log(err.message)}
         else{
           console.log('chat message inserted into db:' + msg);
@@ -75,8 +76,8 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.use('/user-source', photos);
 app.use('/', api);
- 
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //   var err = new Error('Not Found');

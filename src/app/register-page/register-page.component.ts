@@ -27,7 +27,9 @@ export class RegisterPageComponent implements OnInit {
     // console.log(fileurl);
     // this.loginService.uploadPhoto(fileurl);
     // event.preventDefault();
-    console.log(event);
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(name,em, pass, fileurl);
     this.loginService.registerUser(name,em,pass, fileurl).then(data=>{
       this.email = "";
       this.password = "";
@@ -38,20 +40,26 @@ export class RegisterPageComponent implements OnInit {
     }).catch(err=>this.openDialog(err.name,err.message));
     return false;
   }
-  uploadPhoto(event){
-    console.dir(event);
+  onSubmit(event){
     event.preventDefault();
+    event.stopPropagation();
+    return false;
+  }
+  uploadPhoto(event){
+    // event.preventDefault();
+    // event.stopPropagation();
     let fileList: FileList = event.target.files;
+    console.log('in');
     if(fileList.length>0){
       let file: File = fileList[0];
       let formData: FormData = new FormData();
       formData.append('avatar', file, file.name);
       let headers = new Headers();
-      // console.log(formData);
+      // // console.log(formData);
       headers.append('Accept', 'application/json');
       let options = new RequestOptions({ headers: headers });
-      this.chatService.uploadImage(formData, options)
-      .then((result:string) => {this.imageUrl = result; console.log('Result:' + result); event.preventDefault(); return false}).catch(err=>console.log(`Error: ${err}`));
+      this.chatService.uploadImage(formData, options).then((result:string) => {this.imageUrl = result; console.log('Result:' + result);}).catch(err=>{console.log(`Error: ${err}`);return false;});
+      // .subscribe(data=>console.log(data));
     }
     return false;
   }

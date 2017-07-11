@@ -9,6 +9,8 @@
 /node_modules
 /backend/node_modules
 /backend/images
+/src/images
+/src/images/*
 
 # IDEs and editors
 /.idea

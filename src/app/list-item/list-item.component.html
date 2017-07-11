@@ -2,6 +2,10 @@
   <img src="{{userPhoto}}" alt="" class="block__img" *ngIf="userPhoto">
   <img src="http://www.avatarsdb.com/avatars/spongebob_happy.jpg" alt="" class="block__img" *ngIf="!userPhoto">
   <div class="block__list">
+    <!--<img src="images/" alt="">-->
+    <div class="card-image waves-effect waves-light card-panel blue message_image" *ngIf="item?.image" (click)="onFullScreen(item.image)" [ngClass]="{'darken-1': avtor, 'darken-4': !avtor}">
+      <img src="images/users-photo/{{item?.image}}" alt="" class="message_image_pic">
+    </div>
     <span class="block__msg card-panel blue" [ngClass]="{'darken-1': avtor, 'darken-4': !avtor, 'hideMessage': hide && item.message.length>250}" (click)="hide = !hide">{{item?.message}}
       <i class="material-icons" *ngIf="hide && item.message.length>250">more_horiz</i>
     </span>

@@ -7,7 +7,8 @@ import {MdDialogRef} from '@angular/material';
 })
 export class PopupComponent {
   title: string;
-  message: string
+  message: string;
+  image: string;
   constructor(private dialogRef: MdDialogRef<PopupComponent>) { }
 
 }

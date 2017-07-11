@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const dir = 'images/';
+const dir = '../src/images/';
 
 let storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -10,7 +10,7 @@ let storage = multer.diskStorage({
   filename: function (req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now()+ '.jpg');
   }
-})
+});
 
 let upload = multer({ storage: storage }).single('avatar');
 
@@ -24,9 +24,10 @@ router.post('/source', function (req, res) {
       return res.sendStatus(400);
     }
     // res.send('All is good');
-    // console.log(req.file.filename);
+    console.log(req.file.filename);
     res.send(req.file.filename);
   });
 });
+
 
 module.exports = router;

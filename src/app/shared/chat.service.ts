@@ -7,6 +7,7 @@ import 'rxjs/add/observable/throw';
 import {BehaviorSubject} from 'rxjs';
 import {Http, Headers, RequestOptions, Response} from '@angular/http';
 
+
 @Injectable()
 export class ChatService {
   private url = 'http://localhost:5000';
@@ -15,7 +16,9 @@ export class ChatService {
   private couter: number = 1;
   private onlineUsers = new BehaviorSubject(0);
   private isWrite = new BehaviorSubject(false);
-  constructor(private http: Http) {  }
+  constructor(private http: Http) { 
+
+   }
   getMessage(){
     // return this.http.get(this.urlMess).map(this.parseDate);
     let observable = new Observable(observer=>{
@@ -46,11 +49,12 @@ export class ChatService {
     return this.onlineUsers;
   }
   
-  sendMessage(user:string, message: string, photo: string){
+  sendMessage(user:string, message: string, photo: string, image: string){
     let obj = {
       name: user,
       message: message,
-      photoURL: photo
+      photoURL: photo,
+      image: image
     }
     this.socket.emit('messaging', obj);
   }
@@ -67,8 +71,8 @@ export class ChatService {
       xhr.send(file);
       xhr.onload = function(){
         resolve(xhr.responseText);
-      }
-      return false;
+        console.log(xhr.responseText);
+      }      
     });
   }
   private extractData(res: Response) {
@@ -83,6 +87,7 @@ export class ChatService {
       xhr.send(fileList);
       xhr.onload = function(){
         resolve(xhr.responseText);
+        console.log(xhr.responseText);
       }
     })
   }

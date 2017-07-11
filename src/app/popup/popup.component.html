@@ -1,4 +1,7 @@
-<h4 class="title red-text">
+<h4 class="title red-text" *ngIf="title">
   {{title}}
 </h4>
-<p>{{message}}</p>
+<p *ngIf="message">{{message}}</p>
+<div class="image" *ngIf="image">
+  <img src="images/users-photo/{{image}}" alt="">
+</div>

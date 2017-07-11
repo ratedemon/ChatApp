@@ -75,3 +75,23 @@
   right: 1.5%;
   cursor: pointer;
 }
+.message_image{
+  max-width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: translateY(2.8em);
+  transition: all .35s ease;
+  padding: 10px;
+  margin: .5em 0;
+}
+.item__block:hover .message_image{
+  transform: translateY(1em);
+}
+.myself .message_image{
+  justify-content: flex-end;
+}
+.message_image_pic{
+  max-height: 300px;
+  max-width: 100%;
+}

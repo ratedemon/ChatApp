@@ -9,6 +9,8 @@
       "outDir": "dist",
       "assets": [
         "assets",
+        "images",
+        "images/users-photo",
         "favicon.ico"
       ],
       "index": "index.html",
@@ -27,8 +29,7 @@
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
-    }
-  ],
+    }],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"

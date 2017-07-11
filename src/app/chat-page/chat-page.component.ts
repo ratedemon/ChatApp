@@ -37,21 +37,8 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   writing = false;
   initUser;
   initMessages;
-  images: String[] = [];
+  image: string = '';
   constructor(private dataService: DataService, private router: Router, private chatService: ChatService) { }
-  /*@ViewChild('sendMessage') private myScrollContainer: ElementRef; 
-  ngOnInit() {
-    this.dataService.initItems().subscribe(data=>{this.items=data;});
-    this.dataService.initUser().subscribe(data=>{this.user = data;});
-  }
-  Send(desc: string) {
-    this.dataService.sendMessage(this.user.displayName, desc, this.user.photoURL);
-    this.msgVal = '';
-    this.scrollToBottom();
-  }  
-  showMore(){
-    this.dataService.pagination();
-  }*/
   ngOnInit(){
     this.initUser = this.dataService.initUser().subscribe(data=>{this.user = data});
     this.initMessages = this.chatService.getMessage().subscribe(data=>{this.items = data; console.log(this.items)});
@@ -61,9 +48,11 @@ export class ChatPageComponent implements OnInit, OnDestroy {
     if(desc.trim().length<1){
       console.log(desc);
       return;
+      // desc = null;
     }
-    this.chatService.sendMessage(this.user.displayName, desc, this.user.photoURL);
-    this.msgVal = ""
+    this.chatService.sendMessage(this.user.displayName, desc, this.user.photoURL, this.image);
+    this.msgVal = "";
+    this.image = '';
   }
   typingMess(){
     this.chatService.writeMessage().subscribe(data=>this.writing = data);
@@ -88,13 +77,10 @@ export class ChatPageComponent implements OnInit, OnDestroy {
       let headers = new Headers();
       headers.append('Accept', 'application/json');
       let options = new RequestOptions({headers: headers});
-      this.chatService.uploadUsersImage(formData, options).then(result=>console.log(result)).catch(err=>console.log(`Error: ${err}`));
+      this.chatService.uploadUsersImage(formData, options).then((result: string)=>this.image = result).catch(err=>console.log(`Error: ${err}`));
     }
-    // console.log(fileList);
   }
   ngOnDestroy(){
-    // this.dataService.initUser().
-    // this.chatService.getMessage().unsubscribe();
     this.initUser.unsubscribe();
     this.initMessages.unsubscribe();
   }

@@ -8,3 +8,12 @@
 .title{
   margin: 0;
 }
+.image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image > *{
+  max-height: 90vh;
+  max-width: 90vh;
+}

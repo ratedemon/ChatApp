@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Item} from '../shared/items.interface';
+import {DialogService} from '../shared/dialog.service';
 
 @Component({
   moduleId: module.id,
@@ -13,14 +14,13 @@ export class ListItemComponent implements OnInit{
   @Input() userPhoto: string;
   avtor: boolean = false;
   hide: boolean = true;
-  constructor() { }
+  constructor(private dialogService: DialogService) { }
   ngOnInit(){
-    // console.log(this.item,this.user, this.userPhoto);
-    // if(this.item.message.length>250){
-    //   this.hide = true
-    // }
     if(this.item.name == this.user){
       this.avtor = !this.avtor;
     }
+  }
+  onFullScreen(image){
+    this.dialogService.openImage(image);
   }
 }
