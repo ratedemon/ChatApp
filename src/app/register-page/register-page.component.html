@@ -2,7 +2,7 @@
     <h4 class="col s12 main__title">
       {{'Register.Title' | translate}}
     </h4>
-    <form class="col s12 form" #myForm="ngForm" novalidate (ngSubmit)="loginForm(fullName,email, password, imageUrl)">
+    <form class="col s12 form" #myForm="ngForm" novalidate (ngSubmit)="loginForm(fullName,email, password, imageUrl, $event)">
       <div class="row">
         <div class="input-field col col s12 l6 offset-l3">
           <input id="fullname" type="text" [(ngModel)]="fullName" required name="fullname" class="validate">

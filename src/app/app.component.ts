@@ -30,7 +30,7 @@ export class AppComponent implements OnInit{
   }
   ngOnInit(){
     this.initPeople = this.dataService.initUser().subscribe(data=>{this.user = data});
-    this.chatService.livePeople().subscribe(data=>{this.online_people = data; console.log(data)});
+    this.chatService.livePeople().subscribe(data=>{this.online_people = data});
   }
   logout(){
     this.loginService.logout();

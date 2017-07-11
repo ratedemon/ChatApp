@@ -20,18 +20,15 @@ export class DataService {
         limitToLast: this.pageSize
       }
     });
-    console.log(this.pageSize);
     this.items.subscribe(data=>{
       if(data.length==this.pageSize.getValue()){
         this.counter+=30;
         this.nextKey.next(this.counter);
-        console.log(this.nextKey.getValue(), this.counter);
       }
     });
   }
   pagination(){
     this.pageSize.next(this.nextKey.getValue());
-    console.log(this.pageSize.getValue(), this.nextKey.getValue());
   }
   initItems(){
     return this.items;

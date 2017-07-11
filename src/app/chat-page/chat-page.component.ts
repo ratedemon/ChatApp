@@ -4,6 +4,7 @@ import {DataService} from '../shared/data.service';
 import {Item} from '../shared/items.interface';
 import {ChatService} from '../shared/chat.service';
 import {trigger,state,style,animate,transition, keyframes, group} from '@angular/animations';
+import {Headers, RequestOptions} from '@angular/http';
 
 @Component({
   moduleId: module.id,
@@ -13,16 +14,16 @@ import {trigger,state,style,animate,transition, keyframes, group} from '@angular
   animations: [
     trigger('flyInOut', [
       state('in', style({opacity: 1, transform: 'translateX(0)'})),
-      transition('void => *', [
+      transition(':enter', [
         style({
           opacity: 0,
           transform: 'translateX(-100%)'
         }),
         animate('0.2s ease-in')
       ]),
-      transition('* => void', [
+      transition(':leave', [
         animate('0.2s 0.1s ease-out', style({
-          opacity: 0,
+          opacity: 0, 
           transform: 'translateX(100%)'
         }))
       ])
@@ -36,6 +37,7 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   writing = false;
   initUser;
   initMessages;
+  images: String[] = [];
   constructor(private dataService: DataService, private router: Router, private chatService: ChatService) { }
   /*@ViewChild('sendMessage') private myScrollContainer: ElementRef; 
   ngOnInit() {
@@ -56,6 +58,10 @@ export class ChatPageComponent implements OnInit, OnDestroy {
     setTimeout(()=>{this.scrollToBottom();}, 3000);    
   }
   Send(desc: string){
+    if(desc.trim().length<1){
+      console.log(desc);
+      return;
+    }
     this.chatService.sendMessage(this.user.displayName, desc, this.user.photoURL);
     this.msgVal = ""
   }
@@ -68,6 +74,23 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   scrollToBottom(){
     let main = document.querySelector('.main');
     window.scrollTo(0, main.scrollHeight);
+  }
+  uploadPhoto(event){
+    let fileList: FileList = event.target.files;
+    console.log(fileList);
+    if(fileList.length>0){
+      let file: File = fileList[0];
+      let formData: FormData = new FormData();
+      // for(let i=0;i<fileList.length;i++){
+      //   formData.append('user_image', fileList[i], fileList[i].name);
+      // }
+      formData.append('userimage', file, file.name);
+      let headers = new Headers();
+      headers.append('Accept', 'application/json');
+      let options = new RequestOptions({headers: headers});
+      this.chatService.uploadUsersImage(formData, options).then(result=>console.log(result)).catch(err=>console.log(`Error: ${err}`));
+    }
+    // console.log(fileList);
   }
   ngOnDestroy(){
     // this.dataService.initUser().

@@ -22,7 +22,6 @@ export class ChatService {
       this.socket = io(this.url);
       this.socket.on('chat', (data)=>{
         data = data.reverse();
-        console.log(observable, observer, data);
         observer.next(data);
       });
       this.socket.on('messageToClient', (msg)=>{
@@ -69,11 +68,22 @@ export class ChatService {
       xhr.onload = function(){
         resolve(xhr.responseText);
       }
-    })
+      return false;
+    });
   }
   private extractData(res: Response) {
     let body = res.json();
     console.log(body);
     return body.data || { };
+  }
+  uploadUsersImage(fileList, options){
+    return new Promise((resolve,reject)=>{
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", this.url + '/user-source', true);
+      xhr.send(fileList);
+      xhr.onload = function(){
+        resolve(xhr.responseText);
+      }
+    })
   }
 }

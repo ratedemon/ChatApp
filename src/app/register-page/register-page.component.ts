@@ -23,29 +23,37 @@ export class RegisterPageComponent implements OnInit {
   ngOnInit() {
     this.dataService.initUser().subscribe(data=>{this.user = data;})
   }
-  loginForm(name,em, pass, fileurl){
+  loginForm(name,em, pass, fileurl, event){
     // console.log(fileurl);
     // this.loginService.uploadPhoto(fileurl);
+    // event.preventDefault();
+    console.log(event);
     this.loginService.registerUser(name,em,pass, fileurl).then(data=>{
       this.email = "";
       this.password = "";
       this.repeatPassword = "";
       this.imageUrl = '';
       this.router.navigate(['']);
+      console.log(data);
     }).catch(err=>this.openDialog(err.name,err.message));
+    return false;
   }
   uploadPhoto(event){
+    console.dir(event);
+    event.preventDefault();
     let fileList: FileList = event.target.files;
     if(fileList.length>0){
       let file: File = fileList[0];
       let formData: FormData = new FormData();
       formData.append('avatar', file, file.name);
       let headers = new Headers();
+      // console.log(formData);
       headers.append('Accept', 'application/json');
       let options = new RequestOptions({ headers: headers });
       this.chatService.uploadImage(formData, options)
-      .then((result:string) => this.imageUrl = result).catch(err=>console.log(`Error: ${err}`));
+      .then((result:string) => {this.imageUrl = result; console.log('Result:' + result); event.preventDefault(); return false}).catch(err=>console.log(`Error: ${err}`));
     }
+    return false;
   }
   openDialog(title, message){
     this.dialogService.popup(title, message);
