@@ -47,7 +47,7 @@ import 'core-js/es7/reflect';
 
 
 /** ALL Firefox browsers require the following to support `@angular/animation`. **/
-// import 'web-animations-js';  // Run `npm install --save web-animations-js`.
+//import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
 
 
@@ -55,7 +55,7 @@ import 'core-js/es7/reflect';
  * Zone JS is required by Angular itself.
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
-import 'web-animations-js/web-animations.min';
+//import 'web-animations-js/web-animations.min';
 
 
 /***************************************************************************************************

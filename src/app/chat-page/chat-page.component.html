@@ -1,11 +1,11 @@
 <div class="container chat__box">
   <button class="waves-effect waves-light btn" (click)="showMore()"><i class="material-icons right">cloud</i>{{'Message.More' | translate}}</button>
   <ul class="col s12 chat__list" #sendMessage>
-    <li class="list__item" *ngFor="let item of items" [@flyInOut]="'in'">
-      <list-item [item]="item" [user]="user?.displayName" [userPhoto]="item.photoURL"></list-item>
+    <li class="list__item" *ngFor="let item of items" >
+      <list-item [item]="item" [user]="user?.displayName" [userPhoto]="item.photoURL" ></list-item>
     </li>
   </ul>
-  <form class="col s12 form-chat">
+  <form class="col s12 form-chat" [@itemAnim]>
     <div class="row images" *ngIf="image">
       <div class="card-image waves-effect waves-light">
         <img src="images/users-photo/{{image}}" alt="" class="images__pic">
@@ -18,7 +18,7 @@
       </label>          
       <input type="file" accept="image/*" id="files" class="add_photo" (change)="uploadPhoto($event)">
       <div class="input-field col s12 send">
-        <textarea id="textarea1" class="materialize-textarea message" (keyup.enter)="Send($event.target.value)" [(ngModel)]="msgVal"  [ngModelOptions]="{standalone: true}" ></textarea>
+        <textarea id="textarea1" class="materialize-textarea message" (keyup.enter)="Send($event.target.value)" [(ngModel)]="msgVal"  [ngModelOptions]="{standalone: true}"></textarea>
         <label for="textarea1">{{'Message.Mess' | translate}}</label>
       </div>
        <button class="waves-effect waves-circle waves-light btn-floating secondary-content send-btn" [disabled]="!msgVal.trim().length" (click)="Send(msgVal)">

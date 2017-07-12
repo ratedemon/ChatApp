@@ -1,8 +1,7 @@
-<div class="item__block" [ngClass]="{myself:avtor}">
+<div class="item__block" [ngClass]="{myself:avtor}" >
   <img src="{{userPhoto}}" alt="" class="block__img" *ngIf="userPhoto">
   <img src="http://www.avatarsdb.com/avatars/spongebob_happy.jpg" alt="" class="block__img" *ngIf="!userPhoto">
-  <div class="block__list">
-    <!--<img src="images/" alt="">-->
+  <div class="block__list" *ngIf="state" @myAnim (@myAnim.done)="handleDone($event)">
     <div class="card-image waves-effect waves-light card-panel blue message_image" *ngIf="item?.image" (click)="onFullScreen(item.image)" [ngClass]="{'darken-1': avtor, 'darken-4': !avtor}">
       <img src="images/users-photo/{{item?.image}}" alt="" class="message_image_pic">
     </div>
@@ -13,3 +12,4 @@
     <span class="block__name">{{item?.name}}</span>    
   </div>  
 </div>
+<button (click)="animate()">Click</button>

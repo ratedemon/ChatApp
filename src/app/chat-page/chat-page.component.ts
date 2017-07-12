@@ -3,32 +3,33 @@ import {Router} from '@angular/router';
 import {DataService} from '../shared/data.service';
 import {Item} from '../shared/items.interface';
 import {ChatService} from '../shared/chat.service';
-import {trigger,state,style,animate,transition, keyframes, group} from '@angular/animations';
 import {Headers, RequestOptions} from '@angular/http';
+import {itemAnim} from '../animations/item.animation';
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'app-chat-page',
   templateUrl: './chat-page.component.html',
   styleUrls: ['./chat-page.component.css'],
-  animations: [
-    trigger('flyInOut', [
-      state('in', style({opacity: 1, transform: 'translateX(0)'})),
-      transition(':enter', [
-        style({
-          opacity: 0,
-          transform: 'translateX(-100%)'
-        }),
-        animate('0.2s ease-in')
-      ]),
-      transition(':leave', [
-        animate('0.2s 0.1s ease-out', style({
-          opacity: 0, 
-          transform: 'translateX(100%)'
-        }))
-      ])
-    ])
-  ]
+  // animations: [
+  //   trigger('flyInOut', [
+  //     state('in', style({opacity: 1, transform: 'translateX(0)'})),
+  //     transition('void => in', [
+  //       style({
+  //         opacity: 0,
+  //         transform: 'translateX(-100%)'
+  //       }),
+  //       animate('0.2s ease-in')
+  //     ]),
+  //     transition('in => void', [
+  //       animate('0.2s 0.1s ease-out', style({
+  //         opacity: 0, 
+  //         transform: 'translateX(100%)'
+  //       }))
+  //     ])
+  //   ])
+  // ]
+  animations: [itemAnim]
 })
 export class ChatPageComponent implements OnInit, OnDestroy {
   items: any;
