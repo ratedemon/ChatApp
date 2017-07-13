@@ -1,15 +1,14 @@
 <div class="item__block" [ngClass]="{myself:avtor}" >
   <img src="{{userPhoto}}" alt="" class="block__img" *ngIf="userPhoto">
   <img src="http://www.avatarsdb.com/avatars/spongebob_happy.jpg" alt="" class="block__img" *ngIf="!userPhoto">
-  <div class="block__list" *ngIf="state" @myAnim (@myAnim.done)="handleDone($event)">
+  <div class="block__list">
     <div class="card-image waves-effect waves-light card-panel blue message_image" *ngIf="item?.image" (click)="onFullScreen(item.image)" [ngClass]="{'darken-1': avtor, 'darken-4': !avtor}">
       <img src="images/users-photo/{{item?.image}}" alt="" class="message_image_pic">
     </div>
-    <span class="block__msg card-panel blue" [ngClass]="{'darken-1': avtor, 'darken-4': !avtor, 'hideMessage': hide && item.message.length>250}" (click)="hide = !hide">{{item?.message}}
+    <span *ngIf="item?.message" class="block__msg card-panel blue" [ngClass]="{'darken-1': avtor, 'darken-4': !avtor, 'hideMessage': hide && item.message.length>250}" (click)="hide = !hide">{{item?.message}}
       <i class="material-icons" *ngIf="hide && item.message.length>250">more_horiz</i>
     </span>
     <!--<span class="block__msg card-panel blue darken-4">{{item?.message}}</span>-->
     <span class="block__name">{{item?.name}}</span>    
   </div>  
 </div>
-<button (click)="animate()">Click</button>

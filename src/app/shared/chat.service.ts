@@ -16,6 +16,7 @@ export class ChatService {
   private couter: number = 1;
   private onlineUsers = new BehaviorSubject(0);
   private isWrite = new BehaviorSubject(false);
+  private headers = new Headers({'Content-Type': 'application/json'});
   constructor(private http: Http) { 
 
    }
@@ -47,8 +48,7 @@ export class ChatService {
 
   livePeople(){
     return this.onlineUsers;
-  }
-  
+  }  
   sendMessage(user:string, message: string, photo: string, image: string){
     let obj = {
       name: user,
@@ -91,4 +91,8 @@ export class ChatService {
       }
     })
   }
+  removeUsersImage(file: string){
+    console.log(file);
+    return this.http.post(this.url+'/user-source/remove', JSON.stringify({file: file}), {headers: this.headers}).toPromise();
+  }  
 }

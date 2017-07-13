@@ -4,32 +4,15 @@ import {DataService} from '../shared/data.service';
 import {Item} from '../shared/items.interface';
 import {ChatService} from '../shared/chat.service';
 import {Headers, RequestOptions} from '@angular/http';
-import {itemAnim} from '../animations/item.animation';
+import {itemAnim, myAnim} from '../animations/item.animation';
+import {DialogService} from '../shared/dialog.service';
 
 @Component({
   // moduleId: module.id,
   selector: 'app-chat-page',
   templateUrl: './chat-page.component.html',
   styleUrls: ['./chat-page.component.css'],
-  // animations: [
-  //   trigger('flyInOut', [
-  //     state('in', style({opacity: 1, transform: 'translateX(0)'})),
-  //     transition('void => in', [
-  //       style({
-  //         opacity: 0,
-  //         transform: 'translateX(-100%)'
-  //       }),
-  //       animate('0.2s ease-in')
-  //     ]),
-  //     transition('in => void', [
-  //       animate('0.2s 0.1s ease-out', style({
-  //         opacity: 0, 
-  //         transform: 'translateX(100%)'
-  //       }))
-  //     ])
-  //   ])
-  // ]
-  animations: [itemAnim]
+  animations: [itemAnim, myAnim]
 })
 export class ChatPageComponent implements OnInit, OnDestroy {
   items: any;
@@ -39,18 +22,18 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   initUser;
   initMessages;
   image: string = '';
-  constructor(private dataService: DataService, private router: Router, private chatService: ChatService) { }
+  constructor(private dataService: DataService, private router: Router, private chatService: ChatService, private dialogService: DialogService) { }
   ngOnInit(){
     this.initUser = this.dataService.initUser().subscribe(data=>{this.user = data});
     this.initMessages = this.chatService.getMessage().subscribe(data=>{this.items = data; console.log(this.items)});
-    setTimeout(()=>{this.scrollToBottom();}, 3000);    
+    setTimeout(()=>{this.scrollToBottom();}, 1500);   
+    // this.scrollToBottom(); 
   }
   Send(desc: string){
-    if(desc.trim().length<1){
-      console.log(desc);
+    if(desc.trim().length<1 && this.image.length<1){
       return;
-      // desc = null;
     }
+    console.log(desc);
     this.chatService.sendMessage(this.user.displayName, desc, this.user.photoURL, this.image);
     this.msgVal = "";
     this.image = '';
@@ -84,5 +67,9 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.initUser.unsubscribe();
     this.initMessages.unsubscribe();
+  }
+  removePic(){
+    let removePic = this.image;    
+    this.chatService.removeUsersImage(removePic).then(data=>{this.image = '';}).catch(err=>{console.log(err);this.dialogService.popup("Error", err._body)});
   }
 }

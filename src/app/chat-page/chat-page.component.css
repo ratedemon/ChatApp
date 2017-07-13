@@ -93,6 +93,31 @@
   object-fit: cover;
   object-position: center;
 }
+.image-block{
+  display: inline-flex;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+  overflow: visible;
+}
+.image-block .material-icons{
+  position: absolute;
+  top: -15%;
+  right: -15%;
+  width: 1em;
+  height: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #bdbdbd;
+  border-radius: 50%;
+  color: black;
+  transition: all .3s ease;
+}
+.image-block .material-icons:hover{
+  background: #757575;
+  color: #eeeeee;
+}
 @keyframes writing{
   from{ 
     opacity: 1;

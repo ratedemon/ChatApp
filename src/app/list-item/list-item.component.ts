@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, AnimationTransitionEvent } from '@angular/core';
 import {Item} from '../shared/items.interface';
 import {DialogService} from '../shared/dialog.service';
-import {myAnim} from '../animations/item.animation';
+// import {itemAnim} from '../animations/item.animation';
 
 
 @Component({
@@ -9,7 +9,7 @@ import {myAnim} from '../animations/item.animation';
   selector: 'list-item',
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.css'],
-  animations: [myAnim]
+  // animations: [itemAnim]
 })
 export class ListItemComponent implements OnInit{
   @Input() item: Item; 

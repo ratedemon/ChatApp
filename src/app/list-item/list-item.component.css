@@ -80,13 +80,13 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  transform: translateY(2.8em);
+  transform: translateY(2em);
   transition: all .35s ease;
   padding: 10px;
   margin: .5em 0;
 }
 .item__block:hover .message_image{
-  transform: translateY(1em);
+  transform: translateY(.5em);
 }
 .myself .message_image{
   justify-content: flex-end;

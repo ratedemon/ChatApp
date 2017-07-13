@@ -18,7 +18,7 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpModule, Http } from '@angular/http';
 import {createTranslateLoader} from './translateLoader';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+// import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "@angular/material";
 import { PopupComponent } from './popup/popup.component';
 import {DialogService} from './shared/dialog.service';
@@ -36,7 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule, AngularFireModule.initializeApp(config.firebase),
-    BrowserAnimationsModule,AngularFireAuthModule, AngularFireDatabaseModule, FormsModule, NoopAnimationsModule,RouterModule.forRoot(appRoutes), HttpModule, MaterialModule, TranslateModule.forRoot({
+    BrowserAnimationsModule,AngularFireAuthModule, AngularFireDatabaseModule, FormsModule, RouterModule.forRoot(appRoutes), HttpModule, MaterialModule, TranslateModule.forRoot({
       loader:{
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),
