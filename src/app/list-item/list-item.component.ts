@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AnimationTransitionEvent } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import {Item} from '../shared/items.interface';
 import {DialogService} from '../shared/dialog.service';
 // import {itemAnim} from '../animations/item.animation';

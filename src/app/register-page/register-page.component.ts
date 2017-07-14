@@ -13,6 +13,7 @@ import {Headers, RequestOptions} from '@angular/http';
   styleUrls: ['./register-page.component.css']
 })
 export class RegisterPageComponent implements OnInit {
+  fullName:string = "";
   email: string = "";
   password: string = "";
   repeatPassword: string = "";
@@ -31,6 +32,7 @@ export class RegisterPageComponent implements OnInit {
     event.stopPropagation();
     console.log(name,em, pass, fileurl);
     this.loginService.registerUser(name,em,pass, fileurl).then(data=>{
+      this.fullName = "";
       this.email = "";
       this.password = "";
       this.repeatPassword = "";
