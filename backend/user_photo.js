@@ -5,8 +5,9 @@ const dir = '../src/images/users-photo';
 const fs = require('fs');
 const bodyParser = require('body-parser');
 let jsonParser = bodyParser.json();
+const path = require('path');
 
-let lwip = require('lwip');
+const Jimp = require("jimp");
 
 let userStorage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -21,26 +22,15 @@ let uploadNew = multer({ storage: userStorage  }).single('userimage');
 
 router.post('/', (req,res)=>{
   console.log(`User's photo POST IN:`);
-  // console.log(req);
   uploadNew(req,res, (err)=>{
     if(err){
       console.log(`error: ${err}`);
       return res.sendStatus(400);
     }
-    // console.log(req.file);
-    // console.log(req.file);
     let imagePath = req.file.path;
-    // console.log(typeof path);
-    let fileSize = {
-      width: 300,
-      height: 300
-    };
-    lwip.open(imagePath, (err,image)=>{
-      image.batch().scale(.75).writeFile(path, (errr)=>{
-        if(err) console.log("Err "+err);
-        console.log('Done');
-      })
-    });
+    Jimp.read(imagePath).then(image=>{
+      image.quality(80).write(imagePath);
+    }).catch(err=>console.log(`Err: ${err}`));
     res.send(req.file.filename);
   })
 })

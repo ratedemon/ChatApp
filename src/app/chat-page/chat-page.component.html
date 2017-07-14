@@ -6,25 +6,27 @@
     </li>
   </ul>
   <form class="col s12 form-chat" [@itemAnim]>
-    <div class="row images" *ngIf="image.length">
-      <div class="card-image waves-effect waves-light image-block">
-        <img src="images/users-photo/{{image}}" alt="" class="images__pic" [@myAnim]>
-        <i class="material-icons" (click)="removePic()">close</i>
+    <div class="container">    
+      <div class="row images" *ngIf="image.length">
+        <div class="card-image waves-effect waves-light image-block">
+          <img src="images/users-photo/{{image}}" alt="" class="images__pic" [@myAnim]>
+          <i class="material-icons" (click)="removePic()">close</i>
+        </div>
       </div>
-    </div>
-    <div class="row forms">
-      <!--<span class="form-write grey-text" *ngIf="writing">User write a message</span>-->
-      <label for="files" class="add_photo-label waves-effect waves-circle waves-orange btn-floating secondary-content send-btn red">
-        <i class="material-icons">insert_photo</i>
-      </label>          
-      <input type="file" accept="image/*" id="files" class="add_photo" (change)="uploadPhoto($event)">
-      <div class="input-field col s12 send">
-        <textarea id="textarea1" class="materialize-textarea message" (keyup.enter)="Send($event.target.value)" [(ngModel)]="msgVal"  [ngModelOptions]="{standalone: true}"></textarea>
-        <label for="textarea1">{{'Message.Mess' | translate}}</label>
-      </div>
-       <button class="waves-effect waves-circle waves-light btn-floating secondary-content send-btn" [disabled]="!msgVal.trim().length && !image.trim().length" (click)="Send(msgVal)">
-          <i class="material-icons">send</i>
-       </button>
+      <div class="row forms">
+        <!--<span class="form-write grey-text" *ngIf="writing">User write a message</span>-->
+        <label for="files" class="add_photo-label waves-effect waves-circle waves-orange btn-floating secondary-content send-btn red">
+          <i class="material-icons">insert_photo</i>
+        </label>          
+        <input type="file" accept="image/jpeg,image/jpg,image/png" id="files" class="add_photo" (change)="uploadPhoto($event)">
+        <div class="input-field col s11 send">
+          <textarea id="textarea1" class="materialize-textarea message" (keyup.enter)="Send($event.target.value)" [(ngModel)]="msgVal"  [ngModelOptions]="{standalone: true}"></textarea>
+          <label for="textarea1">{{'Message.Mess' | translate}}</label>
+        </div>
+        <button class="waves-effect waves-circle waves-light btn-floating secondary-content send-btn" [disabled]="!msgVal.trim().length && !image.trim().length" (click)="Send(msgVal)">
+            <i class="material-icons">send</i>
+        </button>
+        </div>
     </div>
   </form>
 </div>

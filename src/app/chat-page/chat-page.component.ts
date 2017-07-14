@@ -25,7 +25,7 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   constructor(private dataService: DataService, private router: Router, private chatService: ChatService, private dialogService: DialogService) { }
   ngOnInit(){
     this.initUser = this.dataService.initUser().subscribe(data=>{this.user = data});
-    this.initMessages = this.chatService.getMessage().subscribe(data=>{this.items = data; console.log(this.items)});
+    this.initMessages = this.chatService.getMessage().subscribe(data=>{this.items = data; console.log(this.items);});
     setTimeout(()=>{this.scrollToBottom();}, 1500);   
     // this.scrollToBottom(); 
   }
@@ -33,10 +33,10 @@ export class ChatPageComponent implements OnInit, OnDestroy {
     if(desc.trim().length<1 && this.image.length<1){
       return;
     }
-    console.log(desc);
     this.chatService.sendMessage(this.user.displayName, desc, this.user.photoURL, this.image);
     this.msgVal = "";
     this.image = '';
+    this.scrollToBottom();
   }
   typingMess(){
     this.chatService.writeMessage().subscribe(data=>this.writing = data);
@@ -50,7 +50,6 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   }
   uploadPhoto(event){
     let fileList: FileList = event.target.files;
-    console.log(fileList);
     if(fileList.length>0){
       let file: File = fileList[0];
       let formData: FormData = new FormData();
@@ -64,12 +63,13 @@ export class ChatPageComponent implements OnInit, OnDestroy {
       this.chatService.uploadUsersImage(formData, options).then((result: string)=>this.image = result).catch(err=>console.log(`Error: ${err}`));
     }
   }
-  ngOnDestroy(){
-    this.initUser.unsubscribe();
-    this.initMessages.unsubscribe();
-  }
   removePic(){
     let removePic = this.image;    
     this.chatService.removeUsersImage(removePic).then(data=>{this.image = '';}).catch(err=>{console.log(err);this.dialogService.popup("Error", err._body)});
   }
+  ngOnDestroy(){
+    this.initUser.unsubscribe();
+    this.initMessages.unsubscribe();
+  }
+  
 }

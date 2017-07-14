@@ -58,7 +58,7 @@ export class RegisterPageComponent implements OnInit {
       // // console.log(formData);
       headers.append('Accept', 'application/json');
       let options = new RequestOptions({ headers: headers });
-      this.chatService.uploadImage(formData, options).then((result:string) => {this.imageUrl = result; console.log('Result:' + result);}).catch(err=>{console.log(`Error: ${err}`);return false;});
+      this.chatService.uploadImage(formData, options).then((result:string) => {this.imageUrl = result; console.log('Result:' + result);}).catch(err=>{this.openDialog(err.name,err.message)});
       // .subscribe(data=>console.log(data));
     }
     return false;

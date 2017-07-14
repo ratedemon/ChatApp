@@ -6,14 +6,17 @@ import { FirebaseApp } from 'angularfire2';
 import {config} from './firebaseConfig';
 @Injectable()
 export class LoginService {
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {}
+  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
+    // let user = firebase.auth().currentUser;
+    // user.sendEmailVerification().then
+  }
   registerUser(name, email, password, image){
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(user=>{
-      firebase.auth().currentUser.updateProfile({displayName:name, photoURL: `images/${image}`});
+      firebase.auth().currentUser.updateProfile({displayName:name, photoURL: `images/avatars/${image}`});
+      firebase.auth().currentUser.sendEmailVerification().then(()=>{
+        console.log('Email send');
+      }).catch(err=>console.log('Error ' +err));
     });
-  }
-  uploadPhoto(file){
-    
   }
   loginGoogle(){
     return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());

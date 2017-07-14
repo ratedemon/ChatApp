@@ -34,7 +34,7 @@
             <input type="file" [(ngModel)]="imageFile" name="file" accept="image/*" (change)="uploadPhoto($event)">
           </div>
           <div class="file-path-wrapper">
-            <input class="file-path validate" type="text" [(ngModel)]="imageUrl" name="fileurl" >
+            <input class="file-path validate" required type="text" [(ngModel)]="imageUrl" name="fileurl" >
           </div>
         </div>
       </div>
